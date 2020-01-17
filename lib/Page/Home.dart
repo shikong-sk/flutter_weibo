@@ -54,10 +54,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(45),
         child: AppBar(
+          backgroundColor: Colors.white,
           elevation: 0.5,
           title: TabBar(
             indicatorSize: TabBarIndicatorSize.label,
             labelPadding: EdgeInsets.all(8),
+            labelColor: Colors.black,
+            indicatorColor: Color(0xFFF23A03),
+            unselectedLabelColor: Colors.black54,
             // isScrollable: true,
             controller: this._mainTabController,
             tabs: this._tabs,
@@ -140,8 +144,11 @@ class _HomeLineState extends State<HomeLine> {
             child: ListView.builder(
               itemCount: datas.length,
               itemBuilder: (context, index) {
-                return ContainWidget(
-                  item: datas[index],
+                return Container(
+                  color: Color(0xffefefef),
+                  child: ContainWidget(
+                    item: datas[index],
+                  ),
                 );
                 // return Container();
               },
@@ -255,8 +262,13 @@ class _HotsState extends State<Hots> with TickerProviderStateMixin {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40),
         child: AppBar(
+          backgroundColor: Colors.white,
           titleSpacing: 0,
           title: TabBar(
+            labelColor: Color(0xffdf8519),
+            indicatorColor: Colors.blue,
+            unselectedLabelColor: Colors.black,
+            indicator: BoxDecoration(),
             indicatorSize: TabBarIndicatorSize.label,
             labelPadding: EdgeInsets.all(8),
             isScrollable: true,
@@ -482,12 +494,12 @@ class _HotsState extends State<Hots> with TickerProviderStateMixin {
                   child: ListView.separated(
                     itemCount: this.contain[channel.name].length,
                     separatorBuilder: (context, index) {
-                      return Container();
+                      return Container(color: Color(0xffefefef),height: 5,);
                     },
                     itemBuilder: (content, index) {
                       // print(this.contain[channel.name][index].mblog.mid);
                       return Card(
-                        margin: EdgeInsets.all(8),
+                        margin: EdgeInsets.fromLTRB(0, 2, 0, 0),
                         child: channel.gid == 'lbs'
                             ? ContainWidget(
                                 channel: channel,

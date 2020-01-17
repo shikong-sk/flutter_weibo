@@ -30,8 +30,8 @@ dependencies:
   flutter_webview_plugin: any
 
   # 富文本解析
-  extended_text: any
-  extended_image: any
+  extended_text: 0.6.6
+  extended_image: ^0.6.4
   cached_network_image: any
 
   # # 闲鱼框架

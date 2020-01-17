@@ -63,110 +63,114 @@ class _ContainWidgetState extends State<ContainWidget> {
   @override
   Widget build(BuildContext context) {
     // print(data.repostsCount is int);
-    return Column(children: <Widget>[
-      Row(
-        children: <Widget>[
-          BorderAvatarImage(
-            avatarUrl: data.user.profileImageUrl,
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    data.user.screenName,
-                    style: Theme.of(context)
-                        .textTheme
-                        .body1
-                        .copyWith(color: GpColors.titleColor),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        DateTimeUtil.getTimeDuration(data.createdAt),
-                        style: Theme.of(context)
-                            .textTheme
-                            .overline
-                            .copyWith(color: GpColors.detailColor),
-                      ),
-                      if (data.source.isNotEmpty)
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: RichText(
-                            text: TextSpan(
-                              text: '来自',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .overline
-                                  .copyWith(color: GpColors.detailColor),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: StringUtil.getSourceString(
-                                      data.source), //
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .overline
-                                      .copyWith(color: GpColors.sourceColor),
-                                ),
-                              ],
+    return Container(
+      color: Colors.white,
+      margin: EdgeInsets.only(left:8,right: 8,bottom: 5),
+      child: Column(children: <Widget>[
+        Row(
+          children: <Widget>[
+            BorderAvatarImage(
+              avatarUrl: data.user.profileImageUrl,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      data.user.screenName,
+                      style: Theme.of(context)
+                          .textTheme
+                          .body1
+                          .copyWith(color: GpColors.titleColor),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          DateTimeUtil.getTimeDuration(data.createdAt),
+                          style: Theme.of(context)
+                              .textTheme
+                              .overline
+                              .copyWith(color: GpColors.detailColor),
+                        ),
+                        if (data.source.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: RichText(
+                              text: TextSpan(
+                                text: '来自',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .overline
+                                    .copyWith(color: GpColors.detailColor),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: StringUtil.getSourceString(
+                                        data.source), //
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .overline
+                                        .copyWith(color: GpColors.sourceColor),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        )
-                    ],
-                  ),
-                ],
+                          )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      Container(
-        width: double.infinity,
-        child: Html(data: data.text),
-      ),
-      Container(
-        padding: EdgeInsets.only(top: 0, bottom: 0),
-        color: item == null
-            ? data.pics == null ? Colors.white : GpColors.keyboardPressBgColor
-            : data.thumbnailPic == null
-                ? Colors.white
-                : GpColors.keyboardPressBgColor,
-        child: item == null
-            ? data.pics == null
-                ? Container()
-                : Padding(
-                    padding: EdgeInsets.only(bottom: 0),
-                    child: ImageGroupView(
-                        data.pics, data.mid), // 引入消息id索引，避免Hero组件tag冲突
-                  )
-            : data.picUrls == null
-                ? Container()
-                : Padding(
-                    padding: EdgeInsets.only(bottom: 0),
-                    child: ImageGroupView(data.picUrls, data.mid),
-                  ),
-      ),
-      Container(
-        child: CommentWidget(
-          data: data,
-          // repostsCount: data.repostsCount is int
-          //     ? data.repostsCount
-          //     : int.parse(data.repostsCount), // 转发
-          // commentsCount: data.commentsCount is int
-          //     ? data.commentsCount
-          //     : int.parse(data.commentsCount), // 评论
-          // attitudesCount: data.attitudesCount is int
-          //     ? data.attitudesCount
-          //     : int.parse(data.attitudesCount), // 点赞
-          repostsCount: data.repostsCount.toString(), // 转发
-          commentsCount: data.commentsCount.toString(), // 评论
-          attitudesCount: data.attitudesCount.toString(), // 点赞
+          ],
         ),
-      ),
-    ]);
+        Container(
+          width: double.infinity,
+          child: Html(data: data.text),
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 0, bottom: 0),
+          color: item == null
+              ? data.pics == null ? Colors.white : GpColors.keyboardPressBgColor
+              : data.thumbnailPic == null
+                  ? Colors.white
+                  : GpColors.keyboardPressBgColor,
+          child: item == null
+              ? data.pics == null
+                  ? Container()
+                  : Padding(
+                      padding: EdgeInsets.only(bottom: 0),
+                      child: ImageGroupView(
+                          data.pics, data.mid), // 引入消息id索引，避免Hero组件tag冲突
+                    )
+              : data.picUrls == null
+                  ? Container()
+                  : Padding(
+                      padding: EdgeInsets.only(bottom: 0),
+                      child: ImageGroupView(data.picUrls, data.mid),
+                    ),
+        ),
+        Container(
+          child: CommentWidget(
+            data: data,
+            // repostsCount: data.repostsCount is int
+            //     ? data.repostsCount
+            //     : int.parse(data.repostsCount), // 转发
+            // commentsCount: data.commentsCount is int
+            //     ? data.commentsCount
+            //     : int.parse(data.commentsCount), // 评论
+            // attitudesCount: data.attitudesCount is int
+            //     ? data.attitudesCount
+            //     : int.parse(data.attitudesCount), // 点赞
+            repostsCount: data.repostsCount.toString(), // 转发
+            commentsCount: data.commentsCount.toString(), // 评论
+            attitudesCount: data.attitudesCount.toString(), // 点赞
+          ),
+        ),
+      ]),
+    );
   }
 }
 
@@ -225,7 +229,9 @@ class ImageGroupView extends StatelessWidget {
       }
     } else if (picList.length == 1) {
       return ImageView(
-        imgUrl: picList.runtimeType.toString() == 'List<Pic_urls>'?picList[0].thumbnailPic:picList[0].url,
+        imgUrl: picList.runtimeType.toString() == 'List<Pic_urls>'
+            ? picList[0].thumbnailPic
+            : picList[0].url,
         fit: BoxFit.scaleDown,
         picUrls: picList,
         mid: mid,

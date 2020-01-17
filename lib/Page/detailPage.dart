@@ -36,7 +36,21 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon:Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: Color(0xfffbfbfb),
+        title: Text(
+          '评论',
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

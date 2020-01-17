@@ -45,7 +45,8 @@ class _WebPageState extends State<WebPage> {
     return WebviewScaffold(
       url: widget.url,
       appBar: AppBar(
-        title: Text(widget.title),
+        backgroundColor: Color(0xfffbfbfb),
+        title: Text(widget.title,style: TextStyle(color: Colors.black),),
         centerTitle: true,
       ),
     );

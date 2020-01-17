@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shikong/Model/IconFont.dart';
+import 'package:flutter_shikong/Page/My.dart';
 
 import '../Core/SPHelper.dart';
 
@@ -25,7 +26,7 @@ class _TabScaffoldState extends State<TabScaffold> {
     HomePage(),
     Loading(),
     null,
-    null,
+    My(),
   ];
   @override
   void initState() {

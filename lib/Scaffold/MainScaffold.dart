@@ -30,6 +30,7 @@ class _ApplicationState extends State<Application>
     this._spHelper = await SpHelper.getInstance();
     setState(() {
       this._loginState = this._spHelper.showWBoo();
+      print(this._spHelper.getKeys());
     });
   }
 
@@ -53,10 +54,6 @@ class _ApplicationState extends State<Application>
   Widget build(BuildContext context) {
     return this._loginState
         ? TabScaffold()
-        : WebPage(
-            url: API.getOauthUrl(),
-            title: '微博登录',
-            valueChanged: _back
-          );
+        : WebPage(url: API.getOauthUrl(), title: '微博登录', valueChanged: _back);
   }
 }

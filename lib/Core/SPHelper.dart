@@ -15,6 +15,9 @@ class SpHelper {
   SpHelper._();
 
   Future _init() async {
+
+    SharedPreferences.setMockInitialValues({});
+
     _spf = await SharedPreferences.getInstance();
   }
 
@@ -108,5 +111,12 @@ class SpHelper {
     final bool1 = isLogin();
     final bool2 = isValid();
     return (bool1 && bool2);
+  }
+
+  logOut(){
+    _spf.remove('expires_in');
+    _spf.remove('access_token');
+    _spf.remove('uid');
+    _spf.clear();
   }
 }
